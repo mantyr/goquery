@@ -1,9 +1,9 @@
 # goquery - a little like that j-thing, only in Go
 **forked from [PuerkitoBio/goquery][forkfrom]**
 
-[![build status](https://secure.travis-ci.org/PuerkitoBio/goquery.png)](http://travis-ci.org/PuerkitoBio/goquery)
+[![Build Status](https://travis-ci.org/mantyr/goquery.svg)](https://travis-ci.org/mantyr/goquery)
 
-[![GoDoc](https://godoc.org/github.com/PuerkitoBio/goquery?status.png)](http://godoc.org/github.com/PuerkitoBio/goquery)
+[![GoDoc](https://godoc.org/github.com/mantyr/goquery?status.png)](http://godoc.org/github.com/mantyr/goquery)
 
 goquery brings a syntax and a set of features similar to [jQuery][] to the [Go language][go]. It is based on Go's [net/html package][html] and the CSS Selector library [cascadia][]. Since the net/html parser returns nodes, and not a full-featured DOM tree, jQuery's stateful manipulation functions (like height(), css(), detach()) have been left off.
 
@@ -15,16 +15,16 @@ Syntax-wise, it is as close as possible to jQuery, with the same function names 
 
 Please note that because of the net/html dependency, goquery requires Go1.1+.
 
-    $ go get github.com/PuerkitoBio/goquery
+    $ go get github.com/mantyr/goquery
 
 (optional) To run unit tests:
     
-    $ cd $GOPATH/src/github.com/PuerkitoBio/goquery
+    $ cd $GOPATH/src/github.com/mantyr/goquery
     $ go test
 
 (optional) To run benchmarks (warning: it runs for a few minutes):
 
-    $ cd $GOPATH/src/github.com/PuerkitoBio/goquery
+    $ cd $GOPATH/src/github.com/mantyr/goquery
     $ go test -bench=".*"
 
 ## Changelog
@@ -75,7 +75,7 @@ import (
   "fmt"
   "log"
 
-  "github.com/PuerkitoBio/goquery"
+  "github.com/mantyr/goquery"
 )
 
 func ExampleScrape() {
@@ -106,8 +106,8 @@ The [BSD 3-Clause license][bsd], the same as the [Go language][golic]. Cascadia'
 [bsd]: http://opensource.org/licenses/BSD-3-Clause
 [golic]: http://golang.org/LICENSE
 [caslic]: https://github.com/andybalholm/cascadia/blob/master/LICENSE
-[forkfrom]: https://github.com/github.com/PuerkitoBio
-[doc]: http://godoc.org/github.com/PuerkitoBio/goquery
+[forkfrom]: https://github.com/PuerkitoBio/goquery
+[doc]: http://godoc.org/github.com/mantyr/goquery
 [index]: http://api.jquery.com/index/
 [gonet]: https://github.com/golang/net/
 [html]: http://godoc.org/golang.org/x/net/html
