@@ -44,6 +44,22 @@ func TestRemoveAttr(t *testing.T) {
 	}
 }
 
+func TestRemoveAttrMoreAttr(t *testing.T) {
+	sel := Doc2Clone().Find("#n1")
+
+	sel.RemoveAttr("id class")
+
+	_, ok := sel.Attr("id")
+	if ok {
+		t.Error("Expected there to be no id attributes set")
+	}
+	_, ok = sel.Attr("class")
+	if ok {
+		t.Error("Expected there to be no class attributes set")
+	}
+}
+
+
 func TestSetAttr(t *testing.T) {
 	sel := Doc2Clone().Find("#main")
 

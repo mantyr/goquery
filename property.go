@@ -69,8 +69,15 @@ func (s *Selection) AttrOr(attrName, defaultValue string) string {
 
 // RemoveAttr removes the named attribute from each element in the set of matched elements.
 func (s *Selection) RemoveAttr(attrName string) *Selection {
-	for _, n := range s.Nodes {
-		removeAttr(n, attrName)
+	attrNames := strings.Split(attrName, " ")
+
+	for _, attr := range attrNames {
+		if attr == "" {
+			continue
+		}
+		for _, n := range s.Nodes {
+			removeAttr(n, attr)
+		}
 	}
 
 	return s
