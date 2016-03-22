@@ -43,6 +43,54 @@ func (s *Selection) Val() (val string) {
 	return
 }
 
+// Experimental func, Get mime-type for object, param, embed tags
+func (s *Selection) GetMimeType() (val string) {
+	if len(s.Nodes) == 0 {
+		return
+	}
+	node_type := strings.ToLower(s.Nodes[0].Data)
+	if node_type == "object" {
+		val = strings.Trim(s.AttrOr("codetype", ""), " \n\t\r")
+		if len(val) == 0 {
+			val = strings.Trim(s.Find("param[type #= (.*)]").AttrOr("type", ""), " \n\t\r")
+		}
+		if len(val) == 0 {
+			val = strings.Trim(s.Find("embed[type #= (.*)]").AttrOr("type", ""), " \n\t\r")
+		}
+	} else if node_type == "embed" {
+		val = strings.Trim(s.AttrOr("type", ""), " \n\t\r")
+	} else if node_type == "param" {
+		val = strings.Trim(s.AttrOr("type", ""), " \n\t\r")
+	}
+	val = strings.ToLower(val)
+	return
+}
+
+// Experimental func, Get address file for object, param, embed tags
+func (s *Selection) GetObjectSrc() (val string) {
+	if len(s.Nodes) == 0 {
+		return
+	}
+	node_type := strings.ToLower(s.Nodes[0].Data)
+	if node_type == "object" {
+		val = strings.Trim(s.AttrOr("data", ""), " \n\t\r")
+		if len(val) == 0 {
+			val = strings.Trim(s.Find("param[name=movie]").AttrOr("value", ""), " \n\t\r")
+		}
+		if len(val) == 0 {
+			val = strings.Trim(s.Find("embed[src #= (.*)]").AttrOr("src", ""), " \n\t\r")
+		}
+	} else if node_type == "embed" {
+		val = strings.Trim(s.AttrOr("src", ""), " \n\t\r")
+	} else if node_type == "param" {
+		val = strings.Trim(s.Filter("param[name=movie]").AttrOr("value", ""), " \n\t\r")
+	}
+	val = strings.ToLower(val)
+	return
+}
+
+
+
 // Attr gets the specified attribute's value for the first element in the
 // Selection. To get the value for each element individually, use a looping
 // construct such as Each or Map method.
@@ -78,6 +126,23 @@ func (s *Selection) RemoveAttr(attrName string) *Selection {
 		for _, n := range s.Nodes {
 			removeAttr(n, attr)
 		}
+	}
+
+	return s
+}
+
+// Find and Remove attr - находит и удаляет объявленные атрибуты в не зависимости от содержания
+func (s *Selection) FindRemoveAttr(attrName string) *Selection {
+	var attrSelect string
+
+	for _, attr := range strings.Split(attrName, " ") {
+		if attr == "" {
+			continue
+		}
+		attrSelect += ", ["+attr+" #= (.*)]"
+	}
+	if len(attrSelect) > 0 {
+		return s.Find(attrSelect[2:]).RemoveAttr(attrName)
 	}
 
 	return s

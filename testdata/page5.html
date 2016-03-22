@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tests for Object, Embed, Param tags</title>
+  </head>
+  <BODY>
+    <div id="main_test1">
+        <object id="smotriComVideoPlayerv1234567890_1234567890.1234_12345" classid="clsid:aabbccddee-aabb-ccdd-1122-444555550000" width="640" height="360" codetype="application/x-shockwave-flash_1">
+            <param name="movie" value="http://pics.smotri.com/player.swf?file=1234567890" />
+            <param name="allowScriptAccess" value="always" type="application/x-shockwave-flash_2"/>
+            <param name="allowFullScreen" value="true" type="application/x-shockwave-flash_3"/>
+            <param name="bgcolor" value="#ffffff" />
+            <embed src="http://pics.smotri.com/player.swf?file=1234567890" quality="high" allowscriptaccess="always" allowfullscreen="true" wmode="opaque"  width="640" height="360" type="application/x-shockwave-flash_4"></embed>
+        </object>
+    </div>
+    <div id="main_test2">
+        <object id="smotriComVideoPlayerv1234567890_1234567890.1234_12345" classid="clsid:aabbccddee-aabb-ccdd-1122-444555550000" width="640" height="360" data=" http://pics.smotri.com/player.swf?file=1234567890_1">
+            <param name="movie" value="http://pics.smotri.com/player.swf?file=1234567890" />
+            <param name="allowScriptAccess" value="always" />
+            <param name="allowFullScreen" value="true" type="application/x-shockwave-flash_2" />
+            <param name="bgcolor" value="#ffffff"  type="application/x-shockwave-flash_3" />
+            <embed src="http://pics.smotri.com/player.swf?file=1234567890" quality="high" allowscriptaccess="always" allowfullscreen="true" wmode="opaque"  width="640" height="360" type="application/x-shockwave-flash_4"></embed>
+        </object>
+    </div>
+    <div id="main_test3">
+        <object id="smotriComVideoPlayerv1234567890_1234567890.1234_12345" classid="clsid:aabbccddee-aabb-ccdd-1122-444555550000" width="640" height="360" data="    ">
+            <param name="movie" value=""/>
+            <param name="allowScriptAccess" value="always" />
+            <param name="allowFullScreen" value="true" />
+            <param name="bgcolor" value="#ffffff" />
+            <embed src="http://pics.smotri.com/player.swf?file=1234567890_3" quality="high" allowscriptaccess="always" allowfullscreen="true" wmode="opaque"  width="640" height="360" type="application/x-shockwave-flash"></embed>
+        </object>
+    </div>
+    <div id="main_test4">
+            <param name="allowScriptAccess" value="always" />
+            <param name="movie" value="  http://pics.smotri.com/player.swf?file=1234567890_2"/>
+            <param name="allowFullScreen" value="true" />
+            <param name="bgcolor" value="#ffffff" />
+            <embed src="http://pics.smotri.com/player.swf?file=1234567890_3" quality="high" allowscriptaccess="always" allowfullscreen="true" wmode="opaque"  width="640" height="360" type="application/x-shockwave-flash"></embed>
+    </div>
+    <div id="main_test5">
+            <embed src="http://pics.smotri.com/player.swf?file=1234567890_3" quality="high" allowscriptaccess="always" allowfullscreen="true" wmode="opaque"  width="640" height="360" type="application/x-shockwave-flash"></embed>
+    </div>
+  </BODY>
+</html>
