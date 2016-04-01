@@ -84,6 +84,8 @@ func (s *Selection) GetObjectSrc() (val string) {
 		val = strings.Trim(s.AttrOr("src", ""), " \n\t\r")
 	} else if node_type == "param" {
 		val = strings.Trim(s.Filter("param[name=movie]").AttrOr("value", ""), " \n\t\r")
+	} else if node_type == "iframe" {
+		val = strings.Trim(s.AttrOr("src", ""), " \n\t\r")
 	}
 	val = strings.ToLower(val)
 	return
@@ -164,15 +166,20 @@ func (s *Selection) SetAttr(attrName, val string) *Selection {
 
 // Text gets the combined text contents of each element in the set of matched
 // elements, including their descendants.
-func (s *Selection) Text() string {
+func (s *Selection) Text(params ...string) string {
 	var buf bytes.Buffer
+	var sep = ""
+	if len(params) > 0 {
+		sep = params[0]
+	}
 
 	// Slightly optimized vs calling Each: no single selection object created
 	for _, n := range s.Nodes {
-		buf.WriteString(getNodeText(n))
+		buf.WriteString(getNodeText(n, sep))
 	}
 	return buf.String()
 }
+
 
 // Size is an alias for Length.
 func (s *Selection) Size() int {
@@ -298,14 +305,14 @@ func (s *Selection) ToggleClass(class ...string) *Selection {
 }
 
 // Get the specified node's text content.
-func getNodeText(node *html.Node) string {
+func getNodeText(node *html.Node, sep string) string {
 	if node.Type == html.TextNode {
 		// Keep newlines and spaces, like jQuery
-		return node.Data
+		return sep+node.Data+sep
 	} else if node.FirstChild != nil {
 		var buf bytes.Buffer
 		for c := node.FirstChild; c != nil; c = c.NextSibling {
-			buf.WriteString(getNodeText(c))
+			buf.WriteString(getNodeText(c, sep))
 		}
 		return buf.String()
 	}

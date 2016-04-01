@@ -301,43 +301,48 @@ func TestGetInfoFlash(t *testing.T) {
 
 	val := sel.Find("#main_test1").Find("object").GetMimeType()
 	if val != "application/x-shockwave-flash_1" {
-		t.Error("Expected another mime-type, %q", val)
+		t.Errorf("Expected another mime-type, %q", val)
 	}
 
 	val = sel.Find("#main_test2").Find("object").GetMimeType()
 	if val != "application/x-shockwave-flash_2" {
-		t.Error("Expected another mime-type, %q", val)
+		t.Errorf("Expected another mime-type, %q", val)
 	}
 
 	val = sel.Find("#main_test3").Find("object").GetMimeType()
 	if val != "application/x-shockwave-flash" {
-		t.Error("Expected another mime-type, %q", val)
+		t.Errorf("Expected another mime-type, %q", val)
 	}
 
 
 	val = sel.Find("#main_test1").Find("object").GetObjectSrc()
 	if val != "http://pics.smotri.com/player.swf?file=1234567890" {
-		t.Error("Expected another object src, %q", val)
+		t.Errorf("Expected another object src, %q", val)
 	}
 
 	val = sel.Find("#main_test2").Find("object").GetObjectSrc()
 	if val != "http://pics.smotri.com/player.swf?file=1234567890_1" {
-		t.Error("Expected another object src, %q", val)
+		t.Errorf("Expected another object src, %q", val)
 	}
 
 	val = sel.Find("#main_test3").Find("object").GetObjectSrc()
 	if val != "http://pics.smotri.com/player.swf?file=1234567890_3" {
-		t.Error("Expected another object src, %q", val)
+		t.Errorf("Expected another object src, %q", val)
 	}
 
 	val = sel.Find("#main_test4").Find("param").GetObjectSrc()
 	if val != "http://pics.smotri.com/player.swf?file=1234567890_2" {
-		t.Error("Expected another object src, %q", val)
+		t.Errorf("Expected another object src, %q", val)
 	}
 
 	val = sel.Find("#main_test5").Find("embed").GetObjectSrc()
 	if val != "http://pics.smotri.com/player.swf?file=1234567890_3" {
-		t.Error("Expected another object src, %q", val)
+		t.Errorf("Expected another object src, %q", val)
+	}
+
+	val = sel.Find("#main_test6").Find("iframe").GetObjectSrc()
+	if val != "http://pics.smotri.com/player.swf?file=1234567890_iframe" {
+		t.Errorf("Expected another object src, %q", val)
 	}
 
 }
