@@ -211,6 +211,14 @@ func (s *Selection) Html() (ret string, e error) {
 	return
 }
 
+func (s *Selection) NodeName() string {
+	return NodeName(s)
+}
+
+func (s *Selection) OuterHtml() (string, error) {
+	return OuterHtml(s)
+}
+
 // AddClass adds the given class(es) to each element in the set of matched elements.
 // Multiple class names can be specified, separated by a space or via multiple arguments.
 func (s *Selection) AddClass(class ...string) *Selection {
