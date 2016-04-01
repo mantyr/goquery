@@ -346,3 +346,12 @@ func TestGetInfoFlash(t *testing.T) {
 	}
 
 }
+
+func TestGetObjectHtml(t *testing.T) {
+	sel := Doc5Clone()
+
+	val, _ := sel.Find("#main_test7").OuterHtml()
+	if val != `<div id="main_test7"><iframe src="http://youtube.com/" width="123px"></iframe></div>` {
+		t.Errorf("Expected another html, %q", val)
+	}
+}
