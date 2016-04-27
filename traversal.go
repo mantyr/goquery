@@ -3,6 +3,7 @@ package goquery
 import (
 	"github.com/andybalholm/cascadia"
 	"golang.org/x/net/html"
+	"strings"
 )
 
 type siblingType int
@@ -24,6 +25,9 @@ const (
 // elements, filtered by a selector. It returns a new Selection object
 // containing these matched elements.
 func (s *Selection) Find(selector string) *Selection {
+	if strings.Trim(selector, " \n\t\r") == "" {
+		return pushStack(s, nil)
+	}
 	return pushStack(s, findWithMatcher(s.Nodes, cascadia.MustCompile(selector)))
 }
 
