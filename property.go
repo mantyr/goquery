@@ -91,6 +91,15 @@ func (s *Selection) GetObjectSrc() (val string) {
 	return
 }
 
+// Return root Document for Selection
+func (s *Selection) GetDocument() *Document {
+    return s.document
+}
+
+// Return Selection of root Document
+func (s *Selection) GetDocumentSelection() *Selection {
+    return s.document.Clone()
+}
 
 
 // Attr gets the specified attribute's value for the first element in the
