@@ -109,6 +109,7 @@ func (s *Selection) Attr(attrName string) (val string, exists bool) {
 	if len(s.Nodes) == 0 {
 		return
 	}
+	attrName = strings.ToLower(attrName)
 	return getAttributeValue(attrName, s.Nodes[0])
 }
 
@@ -118,6 +119,7 @@ func (s *Selection) AttrOr(attrName, defaultValue string) string {
 		return defaultValue
 	}
 
+	attrName = strings.ToLower(attrName)
 	val, exists := getAttributeValue(attrName, s.Nodes[0])
 	if !exists {
 		return defaultValue
@@ -128,6 +130,7 @@ func (s *Selection) AttrOr(attrName, defaultValue string) string {
 
 // RemoveAttr removes the named attribute from each element in the set of matched elements.
 func (s *Selection) RemoveAttr(attrName string) *Selection {
+	attrName = strings.ToLower(attrName)
 	attrNames := strings.Split(attrName, " ")
 
 	for _, attr := range attrNames {
@@ -144,6 +147,7 @@ func (s *Selection) RemoveAttr(attrName string) *Selection {
 
 // Find and Remove attr - находит и удаляет объявленные атрибуты в не зависимости от содержания
 func (s *Selection) FindRemoveAttr(attrName string) *Selection {
+	attrName = strings.ToLower(attrName)
 	var attrSelect string
 
 	for _, attr := range strings.Split(attrName, " ") {
@@ -161,6 +165,7 @@ func (s *Selection) FindRemoveAttr(attrName string) *Selection {
 
 // SetAttr sets the given attribute on each element in the set of matched elements.
 func (s *Selection) SetAttr(attrName, val string) *Selection {
+	attrName = strings.ToLower(attrName)
 	for _, n := range s.Nodes {
 		attr := getAttributePtr(attrName, n)
 		if attr == nil {

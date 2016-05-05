@@ -296,6 +296,30 @@ func TestValSelect(t *testing.T) {
 	}
 }
 
+func TestDataAttr(t *testing.T) {
+	doc := DocD().Find("#main_position1").Find("[data-part=sizeColorPickerDetails]")
+	val, ok := doc.Attr("data-productid")
+	if !ok || val != "5159" {
+		t.Errorf("Error data-attr value, %q", val)
+	}
+	val, ok = doc.Attr("data-productId")
+	if !ok || val != "5159" {
+		t.Errorf("Error data-attrId value, %q", val)
+	}
+	val, ok = doc.Attr("data-fullname")
+	if !ok || val != "1234" {
+		t.Errorf("Error data-attr value, %q", val)
+	}
+	val, ok = doc.Attr("test")
+	if !ok || val != "123" {
+		t.Errorf("Error attr value, %q", val)
+	}
+	val, ok = doc.Attr("TITLE")
+	if !ok || val != "test1" {
+		t.Errorf("Error ATTR value, %q", val)
+	}
+}
+
 func TestGetInfoFlash(t *testing.T) {
 	sel := Doc5Clone()
 

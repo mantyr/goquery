@@ -17,6 +17,7 @@ var doc4 *Document
 var doc5 *Document
 var docB *Document
 var docW *Document
+var docD *Document
 
 func Doc() *Document {
 	if doc == nil {
@@ -68,6 +69,15 @@ func Doc5() *Document {
 }
 func Doc5Clone() *Document {
 	return CloneDocument(Doc5())
+}
+func DocD() *Document {
+	if docD == nil {
+		docD = loadDoc("page_data.html")
+	}
+	return docD
+}
+func DocDClone() *Document {
+	return CloneDocument(DocD())
 }
 func DocW() *Document {
 	if docW == nil {
