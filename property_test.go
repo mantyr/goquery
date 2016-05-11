@@ -320,6 +320,14 @@ func TestDataAttr(t *testing.T) {
 	}
 }
 
+func TestDataSlashAttr(t *testing.T) {
+	doc := DocD().Find("#main_position1").Find("meta[property=\"og:title\"]")
+	val, ok := doc.Attr("content")
+	if !ok || val != "Balls" {
+		t.Errorf("Error data-attr value, %q", val)
+	}
+}
+
 func TestGetInfoFlash(t *testing.T) {
 	sel := Doc5Clone()
 
