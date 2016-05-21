@@ -108,7 +108,7 @@ The [BSD 3-Clause license][bsd], the same as the [Go language][golic]. Cascadia'
 [cascadia]: https://github.com/mantyr/cascadia
 [bsd]: http://opensource.org/licenses/BSD-3-Clause
 [golic]: http://golang.org/LICENSE
-[caslic]: https://github.com/andybalholm/cascadia/blob/master/LICENSE
+[caslic]: https://github.com/mantyr/cascadia/blob/master/LICENSE
 [forkfrom]: https://github.com/PuerkitoBio/goquery
 [doc]: http://godoc.org/github.com/mantyr/goquery
 [index]: http://api.jquery.com/index/
