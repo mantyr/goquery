@@ -35,7 +35,11 @@ func (s *Selection) Val() (val string) {
 				return
 			}
 		}
-		return node_option.AttrOr("value", "")
+		if val, ok := node_option.Attr("value"); ok {
+			return val
+		}
+		val, _ = node_option.Html()
+		return val
 	} else if node_type == "textarea" {
 		val, _ = node.Html()
 		return val

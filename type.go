@@ -5,6 +5,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"bytes"
 
 	"golang.org/x/net/html"
 )
@@ -50,6 +51,17 @@ func NewDocumentFromReader(r io.Reader) (*Document, error) {
 	}
 	return newDocument(root, nil), nil
 }
+
+func NewDocumentFromString(s string) (*Document, error) {
+	r := bytes.NewReader([]byte(s))
+
+	root, e := html.Parse(r)
+	if e != nil {
+		return nil, e
+	}
+	return newDocument(root, nil), nil
+}
+
 
 // NewDocumentFromResponse is another Document constructor that takes an http response as argument.
 // It loads the specified response's document, parses it, and stores the root Document

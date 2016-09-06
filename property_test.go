@@ -296,6 +296,17 @@ func TestValSelect(t *testing.T) {
 	}
 }
 
+func TestValSelectOption(t *testing.T) {
+	val := Doc4().Find("#main_select_option").Find("#timespan-from").Val()
+	if val != "2000" {
+		t.Errorf("Val select option error, value, %q", val)
+	}
+	val = Doc4().Find("#main_select_option").Find("#timespan-to").Val()
+	if val != "2015" {
+		t.Errorf("Val select option error, value, %q", val)
+	}
+}
+
 func TestDataAttr(t *testing.T) {
 	doc := DocD().Find("#main_position1").Find("[data-part=sizeColorPickerDetails]")
 	val, ok := doc.Attr("data-productid")
